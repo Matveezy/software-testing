@@ -1,27 +1,28 @@
 package series;
 
-import java.util.function.BiFunction;
-import java.util.stream.LongStream;
+import java.util.function.Function;
 
-public class CosSeries implements BiFunction<Double, Integer, Double>, Series<Double, Integer> {
+import static java.lang.Math.abs;
 
-    @Override
-    public Double apply(Double x, Integer k) {
-        return (Math.pow(-1, k) * Math.pow(x, (2 * k))) / (factorial(2 * k));
-    }
+public class CosSeries implements Function<Double, Double> {
+
+    static private final double eps = 0.0000001;
 
     @Override
-    public Double computeSeries(Double abscissa, Integer step) {
-        double sum = 0;
-        for (int i = 1; i <= step; i++) {
-            Double apply = apply(abscissa, i);
-            sum += apply;
+    public Double apply(Double value) {
+        if (value.isNaN() || value.isInfinite()) {
+            return Double.NaN;
         }
-        return sum;
-    }
-
-    private long factorial(int n) {
-        return LongStream.rangeClosed(1, n)
-                .reduce(1, (long x, long y) -> x * y);
+        double s, an;
+        int n;
+        n = 0;
+        an = 1;
+        s = 0;
+        while (abs(an) > eps) {
+            s += an;
+            n++;
+            an *= -value * value / (2. * n - 1.0) / (2.0 * n);
+        }
+        return s;
     }
 }
