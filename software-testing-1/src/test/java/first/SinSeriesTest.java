@@ -1,6 +1,7 @@
 package first;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -21,5 +22,10 @@ class SinSeriesTest {
     void seriesParametrizedTest(double x, int n, double expected, double delta) {
         Double result = sinSeries.computeSeries(x, n);
         assertEquals(expected, result, delta);
+    }
+
+    @Test
+    void sinTest(){
+        System.out.println(sinSeries.computeSeries(5.0, 10));
     }
 }
