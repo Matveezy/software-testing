@@ -17,7 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MainPageTest {
 
     List<WebDriver> driverList;
+
     WebDriver chromeDriver;
+
     WebDriver firefoxDriver;
 
     @BeforeAll

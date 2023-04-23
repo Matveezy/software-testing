@@ -17,7 +17,9 @@ import java.util.concurrent.TimeUnit;
 public class SearchPageTest {
 
     List<WebDriver> driverList;
+
     WebDriver chromeDriver;
+
     WebDriver firefoxDriver;
 
     @BeforeAll
